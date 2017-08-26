@@ -12,4 +12,22 @@
     <h4>@Model.Title</h4>
     <input type="submit" value="Claim This Job" />
 }
+
+<div id="claim-result"></div>
+
+<script>
+    $('.new-destination').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("Claim")',
+            type: 'POST',
+            dataType: 'json',
+            data: $(this).serialize(),
+            success: function (result) {
+                $('#claim-result').html("You've claimed this job.");
+            }
+        });
+    });
+</script>
+
 <p>@Html.ActionLink("Back to list", "Index")</p>
