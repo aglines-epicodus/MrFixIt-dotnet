@@ -9,15 +9,29 @@
         <h3>Your Current Jobs:</h3>
         @foreach (var Job in Model.Jobs)
         {
-
-
-
-
             <div>
-                $status: @Job.Title |
-                @Html.ActionLink("Mark Active", "MarkActive", new { @text = @Job.Title, id = Job.JobId }) |
+               @Job.Title:
+               
+                @if (Job.Pending)
+                {
+                   <span>Active</span>
+                }
+                else if (Job.Completed)
+                {
+                   <span>Complete</span>
+
+                } else
+                {
+                    <span>Available</span>
+                }
+               |
+           @Html.ActionLink("Mark Active", "MarkActive", new { @text = @Job.Title, id = Job.JobId }) |
                 @Html.ActionLink("Mark Complete", "MarkComplete", new { @text = @Job.Title, id = Job.JobId })
+            
+            
             </div>
+
+
         }
         @if (Model.Avaliable)
         {
