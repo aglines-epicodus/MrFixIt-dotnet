@@ -1,9 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
 }
-
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -13,12 +9,21 @@
         <h3>Your Current Jobs:</h3>
         @foreach (var Job in Model.Jobs)
         {
-            <h5>@Job.Title</h5>
 
+
+
+
+            <div>
+                $status: @Job.Title |
+                @Html.ActionLink("Mark Active", "MarkActive", new { @text = @Job.Title, id = Job.JobId }) |
+                @Html.ActionLink("Mark Complete", "MarkComplete", new { @text = @Job.Title, id = Job.JobId })
+            </div>
         }
         @if (Model.Avaliable)
         {
-            <h2>Please @Html.ActionLink("select a job", "Index", "Jobs").</h2>
+            <h2>Please @Html.ActionLink("Select a job", "Index", "Jobs").</h2>
+
+
         }
         else
         {

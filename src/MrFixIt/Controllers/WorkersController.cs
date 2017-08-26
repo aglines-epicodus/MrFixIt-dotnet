@@ -43,5 +43,46 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //TODO: A worker must be able to mark which jobs they're actively working on using AJAX.
+        public IActionResult MarkActive(int id)
+        {
+            var thisItem = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            return View(thisItem);
+        }
+
+        [HttpPost]
+        public IActionResult MarkActive(Job job)
+        {
+            job.Pending = true;
+            job.Completed = false;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+        //TODO: Workers must be able to mark jobs "complete" using AJAX.
+        public IActionResult MarkComplete(int id)
+        {
+            var thisItem = db.Jobs.FirstOrDefault(items => items.JobId == id);
+            return View(thisItem);
+        }
+
+        [HttpPost]
+        public IActionResult MarkComplete(Job job)
+        {
+            job.Completed = true;
+            job.Pending = false;
+            db.Entry(job).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
+
+
+
     }
 }

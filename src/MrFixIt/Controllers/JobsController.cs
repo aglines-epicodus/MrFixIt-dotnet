@@ -33,26 +33,30 @@ namespace MrFixIt.Controllers
             return RedirectToAction("Index");
         }
 
+
+        //DONE: Workers must be able to claim a job via an AJAX action.
         public IActionResult Claim(int id)
         {
             var thisItem = db.Jobs.FirstOrDefault(items => items.JobId == id);
             return View(thisItem);
         }
-
-        //TODO: Workers must be able to claim a job via an AJAX action.
-
+        
         [HttpPost]
         public IActionResult Claim(Job job)
         {
             job.Worker = db.Workers.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            job.Pending = false;
+            job.Completed = false;
             db.Entry(job).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        //TODO: A worker must be able to mark which jobs they're actively working on using AJAX.
 
-        //TODO: Workers must be able to mark jobs "complete" using AJAX.
+
+
+
+
 
     }
 }

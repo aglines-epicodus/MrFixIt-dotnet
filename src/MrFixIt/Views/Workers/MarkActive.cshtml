@@ -1,0 +1,33 @@
+﻿
+@model MrFixIt.Models.Job
+
+<h2>Would you like to do this job?</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.JobId)
+    @Html.HiddenFor(model => model.Title)
+    @Html.HiddenFor(model => model.Description)
+
+    <h4>@Model.Title</h4>
+    <input type="submit" value="Mark Active" />
+}
+
+<div id="result"></div>
+
+<script>
+    $('.new-destination').submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            url: '@Url.Action("MarkActive")',
+            type: 'POST',
+            dataType: 'json',
+            data: $(this).serialize(),
+            success: function (result) {
+                $('#result').html("You've marked this job active.");
+            }
+        });
+    });
+</script>
+
+<p>@Html.ActionLink("Back to list", "Index")</p>
