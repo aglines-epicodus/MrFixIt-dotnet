@@ -32,7 +32,9 @@ namespace MrFixIt.Controllers
             return View();
         }
 
-
+        
+        // There seems to be no difference btwn basic acct and worker acct.
+        // Does this method ever get called?  
         [HttpPost]
         public IActionResult Create(Worker worker)
         {

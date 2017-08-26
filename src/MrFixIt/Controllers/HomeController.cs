@@ -20,7 +20,8 @@ namespace MrFixIt.Controllers
             {
                 var thisWorker = db.Workers.FirstOrDefault(item => item.UserName == User.Identity.Name);
                 return View(thisWorker);
-            } else
+            }
+            else
             {
                 return View();
             }

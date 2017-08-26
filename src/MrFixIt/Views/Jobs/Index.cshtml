@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
 <div class="text-center">
     <h3>Our Current Jobs</h3>
     @Html.ActionLink("Add a new job", "Create")
@@ -14,6 +10,9 @@
         <ul>
             <li>@Job.Description</li>
         </ul>
+        @*
+            Display of job status needs to account for all states
+        *@
         @if (Job.Worker == null)
         {
         <li class="btn">This job is unclaimed. @Html.ActionLink("Claim This Job", "Claim", new { @text = @Job.Title, id = Job.JobId })</li>

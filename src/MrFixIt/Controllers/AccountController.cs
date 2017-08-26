@@ -13,8 +13,7 @@ namespace MrFixIt.Controllers
 {
     public class AccountController : Controller
     {
-        private MrFixItContext db = new MrFixItContext();
-
+        private MrFixItContext db = new MrFixItContext();   
 
         //Basic User Account Info here...
         private readonly MrFixItContext _db;
@@ -27,11 +26,6 @@ namespace MrFixIt.Controllers
             _signInManager = signInManager;
             _db = db;
         }
-
-        //public IActionResult Index()
-        //{
-        //    return View();
-        //}
 
         public IActionResult Index()
         {

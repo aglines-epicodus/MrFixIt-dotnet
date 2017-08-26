@@ -39,6 +39,8 @@ namespace MrFixIt.Controllers
             return View(thisItem);
         }
 
+        //TODO: Workers must be able to claim a job via an AJAX action.
+
         [HttpPost]
         public IActionResult Claim(Job job)
         {
@@ -47,5 +49,10 @@ namespace MrFixIt.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        //TODO: A worker must be able to mark which jobs they're actively working on using AJAX.
+
+        //TODO: Workers must be able to mark jobs "complete" using AJAX.
+
     }
 }
